@@ -5,6 +5,13 @@
 }
 .body{
     height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.buttons{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
 }
 main{
 
@@ -15,10 +22,22 @@ main{
     border: 3px solid black;
     text-align: center;
     font-size: 10rem;
+
 }
 .game{
+    margin-top: 5%;
     display: grid;
     grid-template-columns: 200px 200px 200px;
     justify-content: center;
     align-content: center;
+}
+.buttons button{
+    height: 80px;
+    width: 160px;
+    margin: 1rem;
+}
+.result{
+    padding: 1rem;
+    text-align: center;
+    font-size: 4rem;
 }

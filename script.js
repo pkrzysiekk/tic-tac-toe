@@ -20,11 +20,17 @@ function addPlayer(name,mark){
     let turn=false;
     return {playerName,playerMark,turn}
 }
+function RestartBoard(){
+    location.reload()
+}
+
 function getRandomInt(max=2) {
     return Math.floor(Math.random() * max);
   }
 function game(player1,player2,gameBoard){
     let movesTaken=0;
+    const resultDiv=document.querySelector(".result")
+    const resultSpan=document.createElement("span");
     function isVictory() {
         const b = gameBoard.board;
         const winningCombinations = [
@@ -74,11 +80,14 @@ function game(player1,player2,gameBoard){
                 }
                 if(isVictory())
                 {
-                    alert(`${activePlayer.playerName} won!`)
-                    RestartBoard();
+                    resultSpan.innerText=`${activePlayer.playerName} won!`;
+                    resultDiv.appendChild(resultSpan);
+                    
                 }
                 if (movesTaken >= 9) {
-                    console.log("Game over!");
+                     resultSpan.innerText="Game over!";
+                     resultDiv.appendChild(resultSpan);
+
                 }
                 
             }
@@ -127,11 +136,6 @@ function game(player1,player2,gameBoard){
     }
     continueGame=()=>{
 
-    }
-    function RestartBoard(){
-        location.reload()
-        
-        
     }
 
     getStartingPlayer();
