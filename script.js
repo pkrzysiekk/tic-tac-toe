@@ -27,6 +27,9 @@ function game(player1,player2,gameBoard){
     let movesTaken=0;
     let activePlayer;
     const gameContainer=document.querySelector(".game");
+    function boxIsEmpty(gameBox){
+        return gameBox.innerHTML==='';
+    }
     initiateBoard=()=>{
 
         for(i=0;i<9;i++){
@@ -34,6 +37,7 @@ function game(player1,player2,gameBoard){
             gameBox.classList.add("gameBox");
             gameBox.addEventListener("click", () => {
                 activePlayer = player1.turn === true ? player1 : player2;
+                if(boxIsEmpty(gameBox)){
                 gameBox.innerHTML = activePlayer.playerMark;
                 const index = Array.from(gameContainer.children).indexOf(gameBox);
                 gameBoard.board[index] = activePlayer.playerMark; 
@@ -50,6 +54,7 @@ function game(player1,player2,gameBoard){
                 if (movesTaken >= 9) {
                     console.log("Game over!");
                 }
+            }
             });
             gameContainer.appendChild(gameBox);
         }
