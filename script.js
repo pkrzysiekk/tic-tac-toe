@@ -23,17 +23,29 @@ function getRandomInt(max=2) {
     return Math.floor(Math.random() * max);
   }
 function game(player1,player2,gameBoard){
-    console.log("Starting the game!");
+
+    startTheGame=()=>{
+        if(player1.turn===true){
+            console.log(`Mark the field you want to ${player1.playerName}!`);
+        }
+        else{
+            console.log(`Mark the field you want to ${player2.playerName}!`);
+        }
+
+    }
     getStartingPlayer=()=>{
         let result=getRandomInt();
         if(result===0){
             console.log(`${player1.playerName} starts!`)
             player1.turn=true;
+            startTheGame();
         }
         else{
             console.log(`${player2.playerName} starts!`)
             player2.turn=true;
+            startTheGame();
         }
+
       
     }
     getStartingPlayer();
