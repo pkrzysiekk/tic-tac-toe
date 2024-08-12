@@ -25,7 +25,30 @@ function getRandomInt(max=2) {
   }
 function game(player1,player2,gameBoard){
     let movesTaken=0;
-    let activePlayer;
+    function isVictory() {
+        const b = gameBoard.board; // Skrót dla wygody
+        const winningCombinations = [
+            [0, 1, 2], // Pierwszy rząd
+            [3, 4, 5], // Drugi rząd
+            [6, 7, 8], // Trzeci rząd
+            [0, 3, 6], // Pierwsza kolumna
+            [1, 4, 7], // Druga kolumna
+            [2, 5, 8], // Trzecia kolumna
+            [0, 4, 8], // Przekątna od lewej do prawej
+            [2, 4, 6]  // Przekątna od prawej do lewej
+        ];
+
+        // Sprawdź, czy którakolwiek z kombinacji wygrywających jest wypełniona przez jednego gracza
+        for (let combo of winningCombinations) {
+            const [a, b, c] = combo;
+            if (gameBoard.board[a] && gameBoard.board[a] === gameBoard.board[b] && gameBoard.board[a] === gameBoard.board[c]) {
+                return true; // Zwycięzca został znaleziony
+            }
+        }
+        return false; // Brak zwycięzcy
+    }
+    
+
     const gameContainer=document.querySelector(".game");
     function boxIsEmpty(gameBox){
         return gameBox.innerHTML==='';
@@ -50,10 +73,14 @@ function game(player1,player2,gameBoard){
                     player2.turn=false;
                     player1.turn=true;
                 }
-
+                if(isVictory())
+                {
+                    console.log("Someone won!")
+                }
                 if (movesTaken >= 9) {
                     console.log("Game over!");
                 }
+                
             }
             });
             gameContainer.appendChild(gameBox);
