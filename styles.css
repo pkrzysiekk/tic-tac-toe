@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.body{
+    height: 100vh;
+}
+main{
+
+}
+.gameBox{
+    width: 200px;
+    height: 200px;
+    border: 3px solid black;
+}
+.game{
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    justify-content: center;
+    align-content: center;
+}
