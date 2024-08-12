@@ -26,26 +26,24 @@ function getRandomInt(max=2) {
 function game(player1,player2,gameBoard){
     let movesTaken=0;
     function isVictory() {
-        const b = gameBoard.board; // Skrót dla wygody
+        const b = gameBoard.board;
         const winningCombinations = [
-            [0, 1, 2], // Pierwszy rząd
-            [3, 4, 5], // Drugi rząd
-            [6, 7, 8], // Trzeci rząd
-            [0, 3, 6], // Pierwsza kolumna
-            [1, 4, 7], // Druga kolumna
-            [2, 5, 8], // Trzecia kolumna
-            [0, 4, 8], // Przekątna od lewej do prawej
-            [2, 4, 6]  // Przekątna od prawej do lewej
+            [0, 1, 2], 
+            [3, 4, 5], 
+            [6, 7, 8], 
+            [0, 3, 6], 
+            [1, 4, 7], 
+            [2, 5, 8],
+            [0, 4, 8], 
+            [2, 4, 6]  
         ];
-
-        // Sprawdź, czy którakolwiek z kombinacji wygrywających jest wypełniona przez jednego gracza
         for (let combo of winningCombinations) {
             const [a, b, c] = combo;
             if (gameBoard.board[a] && gameBoard.board[a] === gameBoard.board[b] && gameBoard.board[a] === gameBoard.board[c]) {
-                return true; // Zwycięzca został znaleziony
+                return true; 
             }
         }
-        return false; // Brak zwycięzcy
+        return false; 
     }
     
 
@@ -53,6 +51,7 @@ function game(player1,player2,gameBoard){
     function boxIsEmpty(gameBox){
         return gameBox.innerHTML==='';
     }
+
     initiateBoard=()=>{
 
         for(i=0;i<9;i++){
@@ -75,7 +74,8 @@ function game(player1,player2,gameBoard){
                 }
                 if(isVictory())
                 {
-                    console.log("Someone won!")
+                    alert(`${activePlayer.playerName} won!`)
+                    RestartBoard();
                 }
                 if (movesTaken >= 9) {
                     console.log("Game over!");
@@ -128,11 +128,28 @@ function game(player1,player2,gameBoard){
     continueGame=()=>{
 
     }
-  getStartingPlayer();
+    function RestartBoard(){
+        location.reload()
+        
+        
+    }
+
+    getStartingPlayer();
+  
 
 }
-pkrzysiek=addPlayer('pkrzysiek','X');
-Computer=addPlayer('Computer','Y');
-game(pkrzysiek,Computer,gameBoard);
+function getPlayers(){
+    alert("Select name and mark for player 1");
+    let name1=prompt("player name: ");
+    let mark1=prompt("mark: ");
+    let name2=prompt("player name: ");
+    let mark2=prompt("mark: ");
+    player1=addPlayer(name1,mark1);
+    player2=addPlayer(name2,mark2);
+    game(player1,player2,gameBoard);
+
+  }
+
+
 
 
